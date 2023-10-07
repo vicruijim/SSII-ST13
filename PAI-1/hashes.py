@@ -32,7 +32,7 @@ def almacenar_fichero(dir):
     conn.close()
  
 c = False
-if   c:
+if c:
     almacenar_fichero("./integridad")
         
 
