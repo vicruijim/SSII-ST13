@@ -8,7 +8,7 @@ def ver_hashes(dir):
         hash = calcula_hash("./"+dir+"/"+fichero)
         cursor = conn.execute("SELECT * FROM HASHES")
         a = cursor.fetchone()
-        if cursor.fetchone() == None:
+        if a == None:
             print("se ha modificado el archivo")
         else: 
             print("El fichero sigue igual")
