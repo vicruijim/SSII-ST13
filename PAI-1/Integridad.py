@@ -10,3 +10,4 @@ def ver_hashes(dir):
         cursor = conn.execute("SELECT NAME,HASH FROM HASHES WHERE HASH = ?", (hash,))
         if cursor.fetchone() == None:
             print("se ha modificado el archivo")
+            
