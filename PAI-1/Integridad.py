@@ -1,4 +1,5 @@
 from hashes import *
+from datetime import datetime
 #import time
 
 def ver_hashes(dir):
@@ -13,8 +14,9 @@ def ver_hashes(dir):
         if a == None:
             cambio = True
             #añadir el fichero al Log
+            hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             with open("./Logs/Logs.txt", "a") as archivo:
-                 archivo.write(f"El archivo {fichero} ha sido modificado \n")
+                 archivo.write(f"El archivo {fichero} ha sido modificado {hora}\n")
         
     if cambio:
         almacenar_fichero(dir)
