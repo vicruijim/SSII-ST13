@@ -1,5 +1,4 @@
 import hashes
-import settings
 from datetime import datetime
 
 def obtenerMAC(token, hashFichero):
@@ -32,7 +31,7 @@ def calcularMACServer(token, hashFichero):
 # Parte del cliente
 
 def enviarTokenServer(rutaFichero):
-    hash = calcularHash.calcularHashArchivo(rutaFichero)
+    hash = hashes.calcularHashArchivo(rutaFichero)
     mac1 = obtenerMAC(settings.tokenCliente, hash)
 
     mac2 = calcularMACServer(settings.tokenCliente, hash)
