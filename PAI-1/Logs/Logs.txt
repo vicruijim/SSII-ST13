@@ -1,1 +1,2 @@
 El archivo prueba1.txt ha sido modificado 
+El archivo prueba.txt ha sido modificado 

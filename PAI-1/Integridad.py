@@ -13,7 +13,7 @@ def ver_hashes(dir):
         if a == None:
             cambio = True
             #añadir el fichero al Log
-            with open("./Logs/Logs.txt", "w") as archivo:
+            with open("./Logs/Logs.txt", "a") as archivo:
                  archivo.write(f"El archivo {fichero} ha sido modificado \n")
         
     if cambio:
