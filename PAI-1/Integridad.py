@@ -18,7 +18,6 @@ def ver_hashes(dir):
         
     if cambio:
         almacenar_fichero(dir)
-        
     else: 
             print("Los ficheros siguen igual")
     conn.close()
