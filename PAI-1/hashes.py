@@ -26,9 +26,10 @@ def almacenar_fichero(dir):
         hash = calcula_hash("./"+dir+"/"+fichero)
         cursor = conn.execute("""INSERT INTO HASHES (NOMBRE,HASH) VALUES 
         (?,?)""",(fichero,hash))
+    conn.commit()
     cursor = conn.execute("SELECT * FROM HASHES")
     print(cursor.fetchall())
-
+    conn.close()
 almacenar_fichero("./integridad")
         
 

@@ -1,13 +1,18 @@
 from hashes import *
-import time
+#import time
 
 def ver_hashes(dir):
     conn = sqlite3.connect("hashes.db")
     conn.text_factory=str
-
-    for file in os.listdir(dir):
-        hash = calcula_hash(file)
-        cursor = conn.execute("SELECT NAME,HASH FROM HASHES WHERE HASH = ?", (hash,))
+    for fichero in os.listdir(dir):
+        hash = calcula_hash("./"+dir+"/"+fichero)
+        cursor = conn.execute("SELECT * FROM HASHES")
+        a = cursor.fetchone()
         if cursor.fetchone() == None:
             print("se ha modificado el archivo")
-            
+        else: 
+            print("El fichero sigue igual")
+    conn.close()
+ver_hashes("./integridad")
+
+    
