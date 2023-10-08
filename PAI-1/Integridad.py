@@ -1,7 +1,6 @@
 from hashes import *
-from datetime import datetime
+from datetime import datetime, timedelta
 import schedule
-import datetime
 import time
 
 def ver_hashes(dir):
@@ -46,8 +45,8 @@ def comprobacion_diaria():
          informe_mensual()
          with open("./Logs/Logs.txt", "w") as archivo: #Borrar el fichero logs
             pass  
-    schedule.every(5).seconds.do(ver_hashes, "./integridad")#prueba frecuencia cada 5 s
-    schedule.every(150).seconds.do(informe_mensual)
+    schedule.every(2).seconds.do(ver_hashes, "./integridad")#prueba frecuencia cada 5 s
+    schedule.every(60).seconds.do(informe_mensual)
     # Ejecuta la programación
     while True:
         schedule.run_pending()
@@ -55,11 +54,11 @@ def comprobacion_diaria():
 
 # Funcion que genera el informe mensual
 def informe_mensual():
-     ultimoDiaMesAnterior=datetime.date.today().replace(day=1)+datetime.timedelta(days=-1)
+     ultimoDiaMesAnterior=datetime.today().date().replace(day=1) - timedelta(days=1)
      mes = ultimoDiaMesAnterior.month
      anyo = ultimoDiaMesAnterior.year
      with open("./Logs/Logs.txt", "r") as origen, open(f"./Reporte/Informe-{mes}-{anyo}.txt", "w") as destino:
-         destino.write(f"Informe del mes:{mes} año:{anyo}")
+         destino.write(f"Informe del mes:{mes} año:{anyo}\n")
          contenido = origen.read()  
          destino.write(contenido) #Se copia contenido de logs al reporte 
 
