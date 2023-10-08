@@ -1,7 +1,7 @@
 from hashes import *
 from datetime import datetime
 import schedule
-from datetime import datetime
+import datetime
 import time
 
 def ver_hashes(dir):
@@ -10,15 +10,15 @@ def ver_hashes(dir):
     conn = sqlite3.connect("hashes.db")
     conn.text_factory=str
     cursor = conn.execute("SELECT * FROM HASHES")
-    serranito = cursor.fetchall()
-    if len(list_ficheros) < len(serranito):
-         for alioli in serranito:
-              if alioli[0] not in list_ficheros:
+    datos_bd = cursor.fetchall()
+    if len(list_ficheros) < len(datos_bd):
+         for dato in datos_bd:
+              if dato[0] not in list_ficheros:
                      cambio = True
-                     print(f"El archivo {alioli[0]}")
+                     print(f"El archivo {dato[0]}")
                      with open("./Logs/Logs.txt", "a") as archivo:
                         hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-                        archivo.write(f"El archivo {alioli[0]} ha sido borrado {hora}\n")   
+                        archivo.write(f"El archivo {dato[0]} ha sido borrado {hora}\n")   
                     
     for fichero in list_ficheros:
         hash = calcula_hash("./"+dir+"/"+fichero)
@@ -40,16 +40,33 @@ def ver_hashes(dir):
 
 def comprobacion_diaria():
     # Programa la comprobación diaria para ejecutarse todos los días a una hora específica
-    #schedule.every().day.at("02:00").do(ver_hashes, "./integridad") #frecuencia diaria
+    #schedule.every().day.at("02:00").do(ver_hashes, "./integridad") #codigo para realizar la comprobacion cada dia a las 02:00
+    dia = datetime.now().day
+    if dia == 1: # comprobar si es nuevo mes
+         informe_mensual()
+         with open("./Logs/Logs.txt", "w") as archivo: #Borrar el fichero logs
+            pass  
     schedule.every(5).seconds.do(ver_hashes, "./integridad")#prueba frecuencia cada 5 s
+    schedule.every(150).seconds.do(informe_mensual)
     # Ejecuta la programación
     while True:
         schedule.run_pending()
         time.sleep(1)
 
-# Ejecuta la función para programar la comprobación diaria
+# Funcion que genera el informe mensual
 def informe_mensual():
-     pass
+     ultimoDiaMesAnterior=datetime.date.today().replace(day=1)+datetime.timedelta(days=-1)
+     mes = ultimoDiaMesAnterior.month
+     anyo = ultimoDiaMesAnterior.year
+     with open("./Logs/Logs.txt", "r") as origen, open(f"./Reporte/Informe-{mes}-{anyo}.txt", "w") as destino:
+         destino.write(f"Informe del mes:{mes} año:{anyo}")
+         contenido = origen.read()  
+         destino.write(contenido) #Se copia contenido de logs al reporte 
+
+   
+          
+          
 
 if __name__ == "__main__":
-    comprobacion_diaria()
+    #comprobacion_diaria()
+    informe_mensual()
