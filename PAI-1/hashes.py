@@ -24,9 +24,6 @@ def almacenar_fichero(dir):
     HASH TEXT NOT NULL);''')
     for fichero in os.listdir(dir):
         hash = calcula_hash("./"+dir+"/"+fichero)
-        cursor = conn.execute("INSERT INTO HASHES (NOMBRE,HASH) VALUES (?,?)",(fichero,hash))
+        conn.execute("INSERT INTO HASHES (NOMBRE,HASH) VALUES (?,?)",(fichero,hash))
     conn.commit()
-    cursor = conn.execute("SELECT NOMBRE FROM HASHES")
-    print(cursor.fetchall())
     conn.close()
-
