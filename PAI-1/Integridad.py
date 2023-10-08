@@ -4,7 +4,6 @@ import schedule
 from datetime import datetime
 import time
 def ver_hashes(dir):
-    
     cambio = False
     conn = sqlite3.connect("hashes.db")
     conn.text_factory=str
@@ -24,12 +23,12 @@ def ver_hashes(dir):
     else: 
             print("Los ficheros siguen igual")
     conn.close()
-ver_hashes("./integridad")
+#ver_hashes("./integridad")
 
 def comprobacion_diaria():
     # Programa la comprobación diaria para ejecutarse todos los días a una hora específica
-    schedule.every().day.at("02:00").do()  # Llama a la función desde el otro archivo
-
+    #schedule.every().day.at("02:00").do(ver_hashes, "./integridad") #frecuencia diaria
+    schedule.every(5).seconds.do(ver_hashes, "./integridad")
     # Ejecuta la programación
     while True:
         schedule.run_pending()

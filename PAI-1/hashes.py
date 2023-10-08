@@ -29,10 +29,4 @@ def almacenar_fichero(dir):
     cursor = conn.execute("SELECT * FROM HASHES")
     print(cursor.fetchall())
     conn.close()
- 
-c = False
-if c:
-    almacenar_fichero("./integridad")
-        
-
 
