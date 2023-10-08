@@ -45,9 +45,8 @@ def comprobacion_diaria():
          informe_mensual()
          with open("./Logs/Logs.txt", "w") as archivo: #Borrar el fichero logs
             pass  
-    schedule.every(2).seconds.do(ver_hashes, "./integridad")#prueba frecuencia cada 5 s
-    schedule.every(60).seconds.do(informe_mensual)
-    # Ejecuta la programación
+    schedule.every(2).seconds.do(ver_hashes, "./integridad")#prueba frecuencia cada 2 s
+    schedule.every(60).seconds.do(informe_mensual) #Se toman 60 segundos como un mes para probar que todo funcion 
     while True:
         schedule.run_pending()
         time.sleep(1)
@@ -67,5 +66,5 @@ def informe_mensual():
           
 
 if __name__ == "__main__":
-    #comprobacion_diaria()
-    informe_mensual()
+    comprobacion_diaria()
+ 
