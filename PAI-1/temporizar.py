@@ -4,6 +4,22 @@ from datetime import datetime
 from Integridad import *
 # Importa la función ver_hashes y otras dependencias aquí
 
+def comprobacion_diaria():
+    # Programa la comprobación diaria para ejecutarse todos los días a una hora específica
+    schedule.every().day.at("02:00").do()  # Llama a la función desde el otro archivo
+
+    # Ejecuta la programación
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+# Ejecuta la función para programar la comprobación diaria
+if __name__ == "__main__":
+    comprobacion_diaria()
+
+
+
+"""
 def comprobarDiariamente(dir, log_dir):
     def job():
         print("Realizando comprobación diaria...")
@@ -36,9 +52,4 @@ def comprobarDiariamente(dir, log_dir):
     while True:
         schedule.run_pending()
         time.sleep(1)
-
-# Ejemplo de uso:
-if __name__ == "__main__":
-    directorio_a_comprobar = "./tu_directorio"  # Reemplaza con la ruta de tu directorio
-    directorio_logs = "./logs"  # Reemplaza con la ruta de tu directorio de logs
-    comprobarDiariamente(directorio_a_comprobar, directorio_logs)
+"""

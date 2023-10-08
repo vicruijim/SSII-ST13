@@ -1,7 +1,8 @@
 from hashes import *
 from datetime import datetime
-#import time
-
+import schedule
+from datetime import datetime
+import time
 def ver_hashes(dir):
     
     cambio = False
@@ -25,4 +26,16 @@ def ver_hashes(dir):
     conn.close()
 ver_hashes("./integridad")
 
-    
+def comprobacion_diaria():
+    # Programa la comprobación diaria para ejecutarse todos los días a una hora específica
+    schedule.every().day.at("02:00").do()  # Llama a la función desde el otro archivo
+
+    # Ejecuta la programación
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+# Ejecuta la función para programar la comprobación diaria
+if __name__ == "__main__":
+    comprobacion_diaria()
+   
