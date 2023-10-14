@@ -24,10 +24,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
     mensaje = str(input("Introduzca un mensaje a enviar al servidor: "))
     clave = str(input("Introduzca la clave privada: "))
 
-    mensaje = crear_mensaje(mensaje,clave)
+    mensaje_hmac = crear_mensaje(mensaje,clave)
 
-    mensaje_con_hmac = f"{mensaje}|{hmac_calculado}|{nonce.hex()}"
-
-    client_socket.sendall(mensaje_con_hmac.encode())
+    client_socket.sendall(mensaje_hmac.encode())
 
     print("Mensaje enviado al servidor.")
