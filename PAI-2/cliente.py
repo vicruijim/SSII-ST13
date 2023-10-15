@@ -17,15 +17,15 @@ def crear_mensaje(m,clave):
 
 
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     
-    client_socket.connect((HOST, PORT))
+    s.connect((HOST, PORT))
+    while True:
+        message = input("Escribe un mensaje (o 'exit' para salir): ")
+        if message == 'exit':
+            break
+        s.sendall(message.encode())
+        data = s.recv(1024)
+        print(f"Received {data!r}")
 
-    mensaje = str(input("Introduzca un mensaje a enviar al servidor: "))
-    clave = str(input("Introduzca la clave privada: "))
-
-    mensaje_hmac = crear_mensaje(mensaje,clave)
-
-    client_socket.sendall(mensaje_hmac.encode())
-
-    print("Mensaje enviado al servidor.")
+print("Conexión cerrada")
