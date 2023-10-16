@@ -8,6 +8,8 @@ import datetime
 HOST = "127.0.0.1"  # Standard loopback interface address (localhost)
 PORT = 3030  # Port to listen on (non-privileged ports are > 1023)
 
+key="123"
+
 mensajesIntegros = 0
 totalmensajes = 0
 
@@ -35,9 +37,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             nonce = partes[1].strip() 
             mac = partes[2].strip() 
 
-            clave = 123
+            
 
-            macMensajeCalculado = calcular_hmac(mensaje, clave,  nonce)
+            macMensajeCalculado = calcular_hmac(mensaje, key,  nonce)
 
 
             if (macMensajeCalculado == mac):
@@ -51,8 +53,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         currentTime = now.strftime("%d/%m/%Y %H:%M:%S")
                         errores.write(f"Posible ataque Man-in-the-middle a las {currentTime}. Mensaje afectado:{data}\n")
                     
-                    
-                
             totalmensajes = totalmensajes + 1
 
             
