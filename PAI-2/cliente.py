@@ -11,6 +11,7 @@ key = "123"
 def crear_mensaje(m,clave):
      #nonce = os.urandom(16) #Calculamos el nonce
      nonce = secrets.token_hex(16) 
+     print(clave.encode())
      h = hmac.new(key=clave.encode(), msg=m.encode('utf-8'), digestmod=hashlib.sha256) #calculamos el mac
      mac = h.hexdigest()#
      print(nonce)
