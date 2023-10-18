@@ -14,10 +14,11 @@ mensajesIntegros = 0
 totalmensajes = 0
 
 def nonceUnico(nonce):
+    
     with open("./nonces.txt", "rb") as nonces:
         for line in nonces:
             if (line.strip().decode() == nonce):
-                print("Error: Nonce ya utilizado. Apuntando en log de errores...")
+                print("Nonce ya utilizado")
 
                 with open("./logs/errors.log", "a") as errores:
                     now = datetime.now()
@@ -34,7 +35,7 @@ def nonceUnico(nonce):
 
 def calcular_hmac(mensaje,clave,nonce):
      
-     if nonceUnico(nonce):
+    
           h = hmac.new(clave.encode(), mensaje.encode('utf-8') , hashlib.sha256)
           return h.hexdigest()
      
@@ -49,7 +50,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             data = conn.recv(1024)
             if not data:
                 break
-            conn.sendall(data)
             if data:
                 data = data.decode()
                 partes = data.split("|")
@@ -59,16 +59,17 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 print(mac) 
                 macMensajeCalculado = calcular_hmac(mensaje, key,  nonce)
                 print(macMensajeCalculado)
-            if (str(macMensajeCalculado) == mac):
+            if ( nonceUnico(nonce) and  str(macMensajeCalculado) == mac):
                     mensajesIntegros = mensajesIntegros + 1
                     
-            else:
-                    print("Error: Claves no coincidentes. Apuntando en el log de errores...")
+            elif(str(macMensajeCalculado) != mac):
+                   
+                    print("Se ha detectado una modificación en el mensaje")
 
                     with open("./logs/errors.log", "a") as errores:
                         now = datetime.now()
                         currentTime = now.strftime("%d/%m/%Y %H:%M:%S")
-                        errores.write(f"Posible ataque Man-in-the-middle a las {currentTime}. Mensaje afectado:{data}\n")
+                        errores.write(f"Fallo en la integridad del mensaje la mac es distinta, detectado a las {currentTime}. Mensaje afectado:{data}\n")
                     
             totalmensajes = totalmensajes + 1
 
