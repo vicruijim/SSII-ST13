@@ -51,13 +51,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 break
             conn.sendall(data)
             if data:
-                data = str(data)
+                data = data.decode()
                 partes = data.split("|")
                 mensaje = partes[0].strip()  
                 mac = partes[1].strip() 
                 nonce = partes[2].strip()
                 print(mac) 
-                macMensajeCalculado = calcular_hmac(mensaje.replace("b'",''), key,  nonce)
+                macMensajeCalculado = calcular_hmac(mensaje, key,  nonce)
                 print(macMensajeCalculado)
             if (str(macMensajeCalculado) == mac):
                     mensajesIntegros = mensajesIntegros + 1
