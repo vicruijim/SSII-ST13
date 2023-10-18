@@ -29,3 +29,7 @@ Fallo en la integridad del mensaje la mac es distinta, detectado a las 18/10/202
  Detectado ataque reply a las 18/10/2023 21:40:34, nonce ya registrado 37d4372c7a7099fb097aa1ce3ff7c2aa 
 Fallo en la integridad del mensaje la mac es distinta, detectado a las 18/10/2023 21:40:34. Mensaje afectado:dada|d|37d4372c7a7099fb097aa1ce3ff7c2aa
 Fallo en la integridad del mensaje la mac es distinta, detectado a las 18/10/2023 21:44:20. Mensaje afectado:dada|goku|37d4372c7a7099fb097aa1ce3ff7c2ab
+ Detectado ataque reply a las 18/10/2023 22:04:51, nonce ya registrado 5b6692cdc1764a78b6790aa29026ece5 
+Fallo en la integridad del mensaje la mac es distinta, detectado a las 18/10/2023 22:04:51. Mensaje afectado:hola|ve|5b6692cdc1764a78b6790aa29026ece5
+ Detectado ataque reply a las 18/10/2023 22:06:33, nonce ya registrado 5b6692cdc1764a78b6790aa29026ece5 
+Fallo en la integridad del mensaje la mac es distinta, detectado a las 18/10/2023 22:06:33. Mensaje afectado:dad|ad|5b6692cdc1764a78b6790aa29026ece5

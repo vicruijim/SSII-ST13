@@ -55,10 +55,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 partes = data.split("|")
                 mensaje = partes[0].strip()  
                 mac = partes[1].strip() 
-                nonce = partes[2].strip()
-                print(mac) 
+                nonce = partes[2].strip() 
                 macMensajeCalculado = calcular_hmac(mensaje, key,  nonce)
-                print(macMensajeCalculado)
+                print("Se han recibido los datos")
             if ( nonceUnico(nonce) and  str(macMensajeCalculado) == mac):
                     mensajesIntegros = mensajesIntegros + 1
                     
