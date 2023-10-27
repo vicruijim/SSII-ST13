@@ -27,8 +27,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         message = input("Escribe un mensaje (o 'exit' para salir): ")
         if message == 'exit':
             break
-        cagao_de_sueño=crear_mensaje(message,clave= key)
-        s.sendall(cagao_de_sueño.encode())
+        mensaje=crear_mensaje(message,clave= key)
+        s.sendall(mensaje.encode())
         
         
 
