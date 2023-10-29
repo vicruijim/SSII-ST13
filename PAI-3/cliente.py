@@ -15,4 +15,3 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         conn.send(b'Hola, servidor seguro con TLS 1.3\n')
         data = conn.recv(1024)
         print('Respuesta del servidor:', data.decode())
-        conn.close()
