@@ -1,6 +1,6 @@
 import socket
 import ssl
-
+import hashlib
 
 #HOST = "localhost"  # Standard loopback interface address (localhost)
 PORT = 3031  # Port to listen on (non-privileged ports are > 1023)
@@ -19,8 +19,15 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         with conn:
             print('Conexión aceptada de:', addr)
 
-            # Trabaja con la conexión como lo necesites
-            conn.send(b'Bienvenido al servidor seguro con TLS 1.3\n')
+             # Trabaja con la conexión como lo necesites
+            # conn.send(b'Bienvenido al servidor seguro con TLS 1.3\n')
             data = conn.recv(1024)
-            print('Datos recibidos:', data.decode())
+            # print('Datos recibidos:', data.decode())
+            #recibir usuario y contraseña 
+            user, contraseña, msj = data.decode.split("|")
+            #consulta en sqlite
 
+            hash_sha256 = hashlib.sha256()
+            hash_sha256.update(contraseña)
+            hash = hash_sha256.hexdigest()
+            #consulta(user hash)
