@@ -2,15 +2,13 @@ import socket
 import ssl
 
 # Configura la dirección del servidor y el puerto al que se conectará el proxy
-SERVER_HOST = '192.168.1.44'
+SERVER_HOST = '192.168.181.45'
 SERVER_PORT = 3031
 
 def proxy_client(client_socket):
     # Crea una conexión SSL hacia el servidor
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.connect((SERVER_HOST, SERVER_PORT))
-    server_socket = ssl.wrap_socket(server_socket, server_side=False)
-
     while True:
         # Recibe datos del cliente
         client_data = client_socket.recv(4096)

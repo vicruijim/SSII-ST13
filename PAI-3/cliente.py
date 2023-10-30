@@ -3,7 +3,7 @@ import socket
 import ssl
 
 #HOST = "localhost"  # The server's hostname or IP address
-PORT = 3030  # The port used by the server
+PORT = 3031  # The port used by the server
 HOST= "DESKTOP-NE5LGKC"
 
 ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
