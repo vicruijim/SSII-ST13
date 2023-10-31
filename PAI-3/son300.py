@@ -13,7 +13,6 @@ ssl_context.load_verify_locations(cafile='./certificado/servidor.crt')
 
 def enviarMensaje():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect((HOST, PORT))
         with ssl_context.wrap_socket(s, server_hostname=HOST) as conn:
             conn.send(mensaje.encode())
 
