@@ -1,7 +1,7 @@
 import socket
 import ssl
 import hashlib
-
+import sqlite3
 #HOST = "localhost"  # Standard loopback interface address (localhost)
 PORT = 3031  # Port to listen on (non-privileged ports are > 1023)
 HOST= "0.0.0.0"
@@ -11,6 +11,7 @@ ssl_context.load_cert_chain(certfile='./cert_remoto/servidor.crt', keyfile='./ce
 ssl_context.options |= ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_1 | ssl.OP_NO_TLSv1_2
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    
     s.bind((HOST, PORT))
     s.listen()
     while True:

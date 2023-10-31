@@ -11,6 +11,7 @@ def crear_bd (lista_usuarios):
 
         hash = hashlib.sha256(bytes(password,'UTF-8')).hexdigest()
         print("El hash de la contraseña es:",hash)
-        conn.execute("INSERT INTO USUARIOS (NOMBRE,PASSWORD) VALUES (?,?)",(user,password))
-
+        conn.execute("INSERT INTO USUARIOS (NOMBRE,PASSWORD) VALUES (?,?)",(user,hash))
+    conn.commit()
+    conn.close()
 crear_bd([("Andres","pajaro")])    
