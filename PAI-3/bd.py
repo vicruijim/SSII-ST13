@@ -8,8 +8,9 @@ def crear_bd (lista_usuarios):
     (NOMBRE TEXT NOT NULL,
     PASSWORD TEXT NOT NULL);''')
     for user, password  in lista_usuarios:
-        hash = hashlib.sha256(password).hexdigest()
-        
-        conn.execute("INSERT INTO HASHES (NOMBRE,HASH) VALUES (?,?)",(user,password))
 
-    
+        hash = hashlib.sha256(bytes(password,'UTF-8')).hexdigest()
+        print("El hash de la contraseña es:",hash)
+        conn.execute("INSERT INTO USUARIOS (NOMBRE,PASSWORD) VALUES (?,?)",(user,password))
+
+crear_bd([("Andres","pajaro")])    
