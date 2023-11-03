@@ -39,7 +39,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             result = cursor.fetchone()
           
             cursor.close()
-            if hash == result[1]:
+            if result and hash == result[1]:
                 print("El mensaje es: ", msj)
 
             else: 

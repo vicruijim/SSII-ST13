@@ -23,4 +23,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
        password = input("Contraseña:")
        msj = input("Mensaje:")
        datos = (user + "|" + password + "|"+ msj)
+       print(datos)
        conn.send(datos.encode())
