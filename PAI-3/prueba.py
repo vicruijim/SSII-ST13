@@ -8,7 +8,7 @@ PORT = 3031
 datos= "LATIA|ABUELA|ABUELETE"
 ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
 ssl_context.minimum_version = ssl.TLSVersion.TLSv1_3
-ssl_context.load_verify_locations(cafile='./certificado/servidor.crt') 
+ssl_context.load_verify_locations(cafile='./certificado/servidor.crt')  # Ajusta la ruta de tu archivo de certificado
 
 # Función para establecer una conexión SSL con el servidor
 def establecer_conexion():
@@ -18,7 +18,7 @@ def establecer_conexion():
             print(f'Conexión establecida con {HOST}:{PORT}')
             print(datos)
             conn.send(datos.encode())
-#num conexiones
+# Número de conexiones que deseas abrir
 num_conexiones = 300
 
 # Crear hilos para establecer conexiones
